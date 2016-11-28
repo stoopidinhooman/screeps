@@ -1,13 +1,8 @@
 /*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('role.harvester');
- * mod.thing == 'a thing'; // true
+Module used to control the upgrader role
  */
  
- var roleHarvester = {
+module.exports = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -18,11 +13,10 @@
             }
         }
         else {
+            //Try to upgrade the controller, if it doesnt move it to the controller
             if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller);
             }
         }
 	}
-};
-
-module.exports = roleHarvester;
+}

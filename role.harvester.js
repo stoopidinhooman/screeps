@@ -1,15 +1,10 @@
 /*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('role.harvester');
- * mod.thing == 'a thing'; // true
+Module to control the harvester role
  */
  
- var roleHarvester = {
+module.exports  = {
 
-    /** @param {Creep} creep **/
+    /** @param {Creep} creep, {Spawn} spawn **/
     run: function(creep, spawn) {
 	    if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
@@ -18,11 +13,10 @@
             }
         }
         else {
+        	//Try to transfer the energy to spawn, if it doesnt move to the spawn
             if(creep.transfer(Game.spawns[spawn], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.spawns[spawn]);
             }
         }
 	}
-};
-
-module.exports = roleHarvester;
+}
